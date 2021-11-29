@@ -18,6 +18,82 @@ endmodule
 
 Task 3: Create a module with 3 inputs and 4 outputs that behaves like wires that makes these connections:
 
+a -> w
+b -> x
+b -> y
+c -> z
+
+module top_module ( a, b, c, w, x, y, z );
+	input a;
+	input b;
+	input c;
+	output w;
+	output x;
+	output y;
+	output z;
+	wire w;
+	wire x;
+	wire y;
+	wire z;
+	assign w = a;
+	assign x = b;
+	assign y = b;
+	assign z = c;
+endmodule
+
+
+Task 4: Create a module that implements a NOT gate (inverter). (1 -> 0, 0 -> 1)
+
+module top_module ( a, y );
+	input a;
+	output y;
+	wire y;
+	assign y = !a;		//or y = ~a;
+endmodule
+
+
+Task 5: Create a module that implements an AND gate. (1:1 -> 1, others -> 0)
+
+module top_module ( a, b, y );
+	input a;
+	input b:
+	output y;
+	wire y;
+	assign y = a&&b; // or y = a&b;
+endmodule
+
+
+Task 6: Create a module that implements a NOR gate. A NOR gate is an OR gate with its output inverted
+
+module top_module ( a, b, y );
+	input a;
+	input b:
+	output y;
+	wire y;
+	assign y = !a||b; 
+endmodule
+
+
+Task 7: Create a module that implements an XNOR gate
+
+module top_module ( a, b, y );
+	input a;
+	input b:
+	output y;
+	wire y;
+	assign y = (a && b) || ((!a) && (!b));
+endmodule
+
+
+Task 8: Implement the following circuit. Create two intermediate wires (named anything you want) to connect the AND and OR gates together. 
+        Note that the wire that feeds the NOT gate is really wire out, so you do not necessarily need to declare a third wire here
+
+
+
+
+
+
+
 
 
 
