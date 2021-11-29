@@ -88,9 +88,65 @@ endmodule
 Task 8: Implement the following circuit. Create two intermediate wires (named anything you want) to connect the AND and OR gates together. 
         Note that the wire that feeds the NOT gate is really wire out, so you do not necessarily need to declare a third wire here
 
+module top_module ( a, b, c, d, y, y_n );
+	input a;
+	input b:
+	input c;
+	input d;
+	output y;
+	output y_n;
+	wire ab, cd;
+	wire y1, y, y_n;
+	assign ab = a&&b;
+	assign cd = c&&d;
+	assign y1 = ab||cd;
+	assign y = y1;
+	assign y_n = !y1;
+	/*
+	assign y = ab||cd;
+	assign y_n = !y;
+	*/	
+endmodule
 
 
+Task 9: 7458 chip design
 
+module top_module ( 
+	p1a,
+	p2a,
+	p2b,
+	p2c,
+	p2d,
+	p1c,
+	p1b,
+	p1f,
+	p1e,
+	p1d,
+	p1y,
+	p2y
+	);
+	input p1a;
+	input p2a;
+	input p2b;
+	input p2c;
+	input p2d;
+	input p1c;
+	input p1b;
+	input p1f;
+	input p1e;
+	input p1d;
+	output p1y;
+	output p2y;
+	wire p2ab, p2cd, p1abc, p1def
+	wire p1y, p2y;
+	
+	assign p2ab = p2a&&p2b;
+	assign p2cd = p2c&&p2d;
+	assign p1abc = p1a&&p1b&&p1c;
+	assign p1def = p1d&&p1e&&p1f;
+	assign p2y = p2ab||p2cd;
+	assign p1y = p1abc||p1def;
+endmodule
 
 
 
