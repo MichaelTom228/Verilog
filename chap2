@@ -1,0 +1,125 @@
+Task 1: Build a circuit that has one 3-bit input, then outputs the same vector, and also splits it into three separate 1-bit outputs. 
+	Connect output o0 to the input vector’s position 0, o1 to position 1, etc.
+	
+module top_module (
+	a, 
+	outv, 
+	o0, 
+	o1, 
+	o2
+	);
+	input [2:0]a;
+	output [2:0]outv, o2, o1, o0;
+	wire [2:0]outv, o2, o1, o0;
+	assign outv = a;
+	assign o2 = a[2];
+	assign o1 = a[1];
+	assign o0 = a[0];
+endmodule
+
+
+Task 2: Build a combinational circuit that splits an input half-word (16 bits, [15:0] ) into lower [7:0] and upper [15:8] bytes.
+
+module top_module (
+	in, 
+	out_hi, 
+	out_lo, 
+	);
+	input [15:0]in;
+	output wire [7:0]out_hi;
+	output wire [7:0]out_lo;
+	
+	assign out_hi = in[15:8];
+	assign out_lo = in[7:0];
+	
+endmodule
+
+
+Task 3: Build a circuit that will reverse the byte ordering of the 4-byte word.
+
+eg. AaaaaaaaBbbbbbbbCcccccccDddddddd => DdddddddCcccccccBbbbbbbbAaaaaaaa
+
+module top_module (
+	input [31:0] in,
+	output [31:0] out
+);
+
+	assign out[31:24] = in[ 7: 0];	
+	assign out[23:16] = in[15: 8];	
+	assign out[15: 8] = in[23:16];	
+	assign out[ 7: 0] = in[31:24];	
+	
+endmodule
+
+
+Task 4: Build a circuit that has two 3-bit inputs that computes the bitwise-OR of the two vectors, the logical-OR of the two vectors, and the inverse (NOT) of both vectors. 
+	Place the inverse of b in the upper half of out_not (i.e., bits [5:3]), and the inverse of a in the lower half.
+
+module top_module (
+	a,
+	b,
+	out_or_bitwise,
+	out_or_logical,
+	out_not
+	);
+	
+	input [2:0] a;
+	input [2:0] b;
+	output [2:0] out_or_bitwise;
+	output out_or_logical;
+	output [5:0] out_not;
+	
+	assign out_or_bitwise = a | b;
+	assign out_or_logical = a || b;
+	assign out_not[2:0] = ~a;
+	assign out_not[5:3] = ~b;
+
+endmodule
+
+
+Task 5: Build a combinational circuit with four inputs, in[3:0]
+
+out_and: output of a 4-input AND gate.
+out_or: output of a 4-input OR gate.
+out_xor: output of a 4-input XOR gate.
+
+module top_module( 
+    input [3:0] in,
+    output out_and,
+    output out_or,
+    output out_xor
+);
+    
+    assign out_and = in[0] & in[1] & in[2] & in[3]; 
+    assign out_or  = in[0] | in[1] | in[2] | in[3];
+    assign out_xor = in[0] ^ in[1] ^ in[2] ^ in[3];
+
+    /*
+    assign out_and = &in;
+    assign out_or  = |in;
+    assign out_xor = ^in;
+    */
+    
+endmodule
+
+
+Task 6: Given an 8-bit input vector [7:0], reverse its bit ordering.
+
+module top_module (
+	input [7:0] in,
+	output [7:0] out
+	);
+	//solution 1:
+	assign {out[0],out[1],out[2],out[3],out[4],out[5],out[6],out[7]} = in;
+
+	//solution 2:
+	always @(*) begin	
+		for (integer i=0; i<8; i++)	// int is a SystemVerilog type. Use integer for pure Verilog.
+			out[i] = in[8-i-1];
+	end
+endmodule
+
+
+
+
+
