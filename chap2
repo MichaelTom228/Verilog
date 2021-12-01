@@ -119,6 +119,27 @@ module top_module (
 	end
 endmodule
 
+Task 7: Build a circuit that sign-extends an 8-bit number to 32 bits. 
+	This requires a concatenation of 24 copies of the sign bit (i.e., replicate bit[7] 24 times) followed by the 8-bit number itself.
+	
+module top_module (
+	input [7:0] in,
+	output [31:0] out
+);
+
+	// Concatenate two things together:
+	// 1: {in[7]} repeated 24 times (24 bits)
+	// 2: in[7:0] (8 bits)
+	assign out = { {24{in[7]}}, in };
+	
+endmodule
+
+
+Task 8: Given five 1-bit signals (a, b, c, d, and e), compute all 25 pairwise one-bit comparisons in the 25-bit output vector. 
+	The output should be 1 if the two bits being compared are equal.
+	+
+	
+
 
 
 
